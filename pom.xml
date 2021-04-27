@@ -1,0 +1,108 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.grpcserver</groupId>
+	<artifactId>grpc_java</artifactId>
+	<packaging>jar</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<name>grpc_java</name>
+	<description>grpc_java</description>
+	<url>http://maven.apache.org</url>
+
+	<profiles>
+		<!-- 开发 -->
+		<profile>
+			<!-- profile的id -->
+			<id>dev</id>
+			<properties>
+				<!-- 此处的jastar.env可以自定义，其他地方可以使用${jastar.env}来引用此属性 -->
+				<jastar.env>dev</jastar.env>
+			</properties>
+			<activation>
+				<!-- 默认激活此配置 -->
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+
+		<!-- 生产 -->
+		<profile>
+			<id>production</id>
+			<properties>
+				<jastar.env>production</jastar.env>
+			</properties>
+		</profile>
+	</profiles>
+
+	<repositories>
+		<repository>
+			<id>maven-net-cn</id>
+			<name>Maven China Mirror</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>maven-net-cn</id>
+			<name>Maven China Mirror</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<!-- 资源文件处理插件，必须配置 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.0.2</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+		<finalName>grpc_java</finalName>
+		<resources>
+			<!-- 所有公共资源文件 -->
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<!-- 不同环境的资源文件 -->
+			<resource>
+				<directory>src/main/filters/${jastar.env}</directory>
+			</resource>
+		</resources>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		
+	</dependencies>
+
+</project>
