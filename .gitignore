@@ -1,0 +1,19 @@
+*.class
+# Package Files #
+*.jar
+*.war
+*.ear
+*.iml
+/.idea
+.idea/
+.svn
+*.svn
+doc
+target/
+/bin
+/.settings
+/.classpath
+/.project
+/**/target
+*/target/*
+*.mp4
