@@ -60,25 +60,3 @@ public class GrpcServer {
 
 
 
-
-
-
-
-
-
-
-
-package com.grpcserver.server;
-
-import io.grpc.Server;
-import io.grpc.ServerBuilder;
-import io.grpc.stub.StreamObserver;
-
-import java.io.IOException;
-
-public class GrpcServer {
-
-    private int port = 50051;
-    private Server server;
-
-}
