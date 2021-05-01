@@ -117,13 +117,4 @@ public class GrpcServer {
         server.blockUntilShutdown();
     }
 
-    // 实现 定义一个实现服务接口的类
-    private class MessageImpl extends MsgServiceGrpc.MsgServiceImplBase {
-        @Override
-        public void sendMsg(MsgRequest req, StreamObserver<MsgResponse> responseObserver) {
-            MsgResponse reply = MsgResponse.newBuilder().setMessage(("Hello From Java " + req.getUsername())).build();
-            responseObserver.onNext(reply);
-            responseObserver.onCompleted();
-        }
-    }
 }
