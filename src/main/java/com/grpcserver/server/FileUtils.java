@@ -10,6 +10,7 @@ public class FileUtils {
     // public static final String DIR_PATH = "D:"+File.separator+"grpc_files"+File.separator;
     public static final String DIR_PATH = "D:"+File.separator+"grpc_files"+File.separator;
 
+    // 读取文件详细信息
     public static String readFileContent(String fileName) {
         File file = new File(fileName);
         BufferedReader reader = null;
@@ -36,6 +37,7 @@ public class FileUtils {
         return sbf.toString();
     }
 
+    // 获取文件列表
     public static String getFiles(){
         StringBuffer stringBuffer = new StringBuffer();
         List<String> files = getFilesByPathAndSuffix();
@@ -78,16 +80,12 @@ public class FileUtils {
         return stringBuffer.toString();
     }
 
+    // 获取文件内容
     public static List<String> getFilesByPathAndSuffix() {
         File file = new File(DIR_PATH);
         List<String> tempList = new ArrayList<String>();
         for (File temp : file.listFiles()) {
             if (!temp.isDirectory()) {
-//                System.out.println("----------------------");
-//                System.out.println(temp.toString());
-//                System.out.println(DIR_PATH);
-//                System.out.println(temp.toString().replace(DIR_PATH.toString(),""));
-//                System.out.println("----------------------");
                 tempList.add(temp.toString());
             }
         }
@@ -102,6 +100,7 @@ public class FileUtils {
         System.out.println(ar[1]);
     }
 
+    // 追加新增的内容到文件末尾
     public static void appendToFile(String fileName, String content){
         try{
             File file = new File(DIR_PATH+fileName);

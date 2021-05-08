@@ -43,6 +43,7 @@ public class GrpcServer {
         }
     }
 
+    // 主函数启动RPC服务
     public static void main(String[] args) throws IOException, InterruptedException {
 
         final GrpcServer server = new GrpcServer();
