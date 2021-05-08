@@ -55,7 +55,7 @@ public class FileUtils {
 
                 stringBuffer.append("</td>");
                 stringBuffer.append("<td>");
-                stringBuffer.append("选择");
+                stringBuffer.append("<input type=\"radio\" name=\"selectedfile\" value=\""+files.get(i)+"\">");
                 stringBuffer.append("</td>");
                 stringBuffer.append("</tr>");
             }
