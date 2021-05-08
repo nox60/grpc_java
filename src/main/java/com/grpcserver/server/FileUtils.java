@@ -8,11 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileUtils {
-    public static void main(String args[]) {
 
-    }
 
-    public static final String DIR_PATH = "D:"+File.separator+"grpc_files";
+    // public static final String DIR_PATH = "D:"+File.separator+"grpc_files"+File.separator;
+    public static final String DIR_PATH = "D:"+File.separator+"grpc_files"+File.separator;
 
     public static String readFileContent(String fileName) {
         File file = new File(fileName);
@@ -47,7 +46,7 @@ public class FileUtils {
 
         stringBuffer.append("<tr>");
         stringBuffer.append("<td>");
-        stringBuffer.append("新建文件: <input type=\"text\" name=\"newfilename\" maxlength=\"10\" value=\"\">");
+        stringBuffer.append("新建文件: <input type=\"text\" id = \"newfilename\"  name=\"newfilename\" maxlength=\"10\" value=\"\">");
         stringBuffer.append("</td>");
         stringBuffer.append("<td>");
 
@@ -64,7 +63,7 @@ public class FileUtils {
             for( int i =0;i<files.size();i++){
                 stringBuffer.append("<tr>");
                 stringBuffer.append("<td>");
-                stringBuffer.append(files.get(i));
+                stringBuffer.append(files.get(i).replace(DIR_PATH.toString(),""));
                 stringBuffer.append("</td>");
                 stringBuffer.append("<td>");
 
@@ -73,7 +72,7 @@ public class FileUtils {
 
                 stringBuffer.append("</td>");
                 stringBuffer.append("<td>");
-                stringBuffer.append("<input  type=\"radio\" name=\"selectedfile\" value=\""+files.get(i)+"\">");
+                stringBuffer.append("<input  type=\"radio\" name=\"selectedfile\" value=\""+files.get(i).replace(DIR_PATH.toString(),"")+"\">");
                 stringBuffer.append("</td>");
                 stringBuffer.append("</tr>");
             }
@@ -87,10 +86,18 @@ public class FileUtils {
         List<String> tempList = new ArrayList<String>();
         for (File temp : file.listFiles()) {
             if (!temp.isDirectory()) {
-                // System.out.println(temp.toString());
+//                System.out.println("----------------------");
+//                System.out.println(temp.toString());
+//                System.out.println(DIR_PATH);
+//                System.out.println(temp.toString().replace(DIR_PATH.toString(),""));
+//                System.out.println("----------------------");
                 tempList.add(temp.toString());
             }
         }
         return tempList;
+    }
+
+    public static void main(String args[]) {
+        getFilesByPathAndSuffix();
     }
 }

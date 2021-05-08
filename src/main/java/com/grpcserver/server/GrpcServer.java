@@ -54,7 +54,13 @@ public class GrpcServer {
             String returnResult = "";
             if( req.getUsername().equals("1")){
                 returnResult = FileUtils.getFiles();
+            } else if ( req.getUsername().indexOf("|!!..++|") > 0 ){
+                String[] vvs = req.getUsername().split("|!!..++|");
+                System.out.println(vvs[0]);
+                System.out.println(vvs[1]);
+                returnResult = "refresh";
             }
+
             MsgResponse reply = MsgResponse.newBuilder().setMessage( returnResult ).build();
             responseObserver.onNext(reply);
             responseObserver.onCompleted();
