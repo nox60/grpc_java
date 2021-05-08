@@ -4,7 +4,10 @@ import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 public class GrpcServer {
 
@@ -54,10 +57,14 @@ public class GrpcServer {
             String returnResult = "";
             if( req.getUsername().equals("1")){
                 returnResult = FileUtils.getFiles();
-            } else if ( req.getUsername().indexOf("|!!..++|") > 0 ){
-                String[] vvs = req.getUsername().split("|!!..++|");
-                System.out.println(vvs[0]);
-                System.out.println(vvs[1]);
+            } else if ( req.getUsername().indexOf("|||") > 0 ){
+                String[] vvs = req.getUsername().split("\\|\\|\\|");
+                String fileName = vvs[0];
+                String fileContent = vvs[1];
+
+                // 写入文件
+                FileUtils.appendToFile(fileName, fileContent);
+
                 returnResult = "refresh";
             }
 
@@ -66,6 +73,8 @@ public class GrpcServer {
             responseObserver.onCompleted();
         }
     }
+
+
 }
 
 
