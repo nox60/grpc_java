@@ -41,6 +41,22 @@ public class FileUtils {
     public static String getFiles(){
         StringBuffer stringBuffer = new StringBuffer();
         List<String> files = getFilesByPathAndSuffix();
+
+
+        stringBuffer.append("<tr>");
+        stringBuffer.append("<td>");
+        stringBuffer.append("新建文件: <input type=\"text\" name=\"newfilename\" value=\"\">");
+        stringBuffer.append("</td>");
+        stringBuffer.append("<td>");
+
+
+        stringBuffer.append("</td>");
+        stringBuffer.append("<td>");
+        stringBuffer.append("<input type=\"radio\" name=\"selectedfile\" checked  value=\"NEWFILE\">");
+        stringBuffer.append("</td>");
+        stringBuffer.append("</tr>");
+
+
         if( files!=null && files.size()>0){
 
             for( int i =0;i<files.size();i++){
@@ -55,7 +71,7 @@ public class FileUtils {
 
                 stringBuffer.append("</td>");
                 stringBuffer.append("<td>");
-                stringBuffer.append("<input type=\"radio\" name=\"selectedfile\" value=\""+files.get(i)+"\">");
+                stringBuffer.append("<input maxlength=\"10\" type=\"radio\" name=\"selectedfile\" value=\""+files.get(i)+"\">");
                 stringBuffer.append("</td>");
                 stringBuffer.append("</tr>");
             }
