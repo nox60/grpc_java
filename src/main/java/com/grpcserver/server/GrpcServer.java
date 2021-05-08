@@ -51,7 +51,11 @@ public class GrpcServer {
     private class MessageImpl extends MsgServiceGrpc.MsgServiceImplBase {
         @Override
         public void sendMsg(MsgRequest req, StreamObserver<MsgResponse> responseObserver) {
-            MsgResponse reply = MsgResponse.newBuilder().setMessage(("Hello From Java " + req.getUsername())).build();
+            String returnResult = "";
+            if( req.getUsername().equals("1")){
+                returnResult = FileUtils.getFiles();
+            }
+            MsgResponse reply = MsgResponse.newBuilder().setMessage( returnResult ).build();
             responseObserver.onNext(reply);
             responseObserver.onCompleted();
         }
