@@ -63,7 +63,9 @@ public class GrpcServer {
               //  String[] vvs = req.getUsername().split("\\|\\|\\|");
                 String fileName = req.getMsgVolue();
                 String fileContent = req.getMsgBody();
-
+                System.out.println("getMsgCode   : "+req.getMsgCode());
+                System.out.println("getMsgVolue  : "+req.getMsgVolue());
+                System.out.println("getMsgBody   : "+req.getMsgBody());
                 // 写入文件
                 FileUtils.appendToFile(fileName, fileContent);
 
