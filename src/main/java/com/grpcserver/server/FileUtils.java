@@ -19,7 +19,9 @@ public class FileUtils {
             reader = new BufferedReader(new FileReader(file));
             String tempStr;
             while ((tempStr = reader.readLine()) != null) {
+                sbf.append("<p>");
                 sbf.append(tempStr);
+                sbf.append("</p>");
             }
             reader.close();
             return sbf.toString();
@@ -67,7 +69,7 @@ public class FileUtils {
                 stringBuffer.append("<td>");
 
                 // 读取文件内容
-                stringBuffer.append(readFileContent(files.get(i)));
+                stringBuffer.append("<div>"+readFileContent(files.get(i))+"</div>");
 
                 stringBuffer.append("</td>");
                 stringBuffer.append("<td>");
