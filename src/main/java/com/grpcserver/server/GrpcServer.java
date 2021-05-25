@@ -56,12 +56,13 @@ public class GrpcServer {
         @Override
         public void sendMsg(MsgRequest req, StreamObserver<MsgResponse> responseObserver) {
             String returnResult = "";
-            if( req.getUsername().equals("1")){
+            if( req.getMsgCode().equals("1")){
                 returnResult = FileUtils.getFiles();
-            } else if ( req.getUsername().indexOf("|||") > 0 ){
-                String[] vvs = req.getUsername().split("\\|\\|\\|");
-                String fileName = vvs[0];
-                String fileContent = vvs[1];
+          //  } else if ( req.getUsername().indexOf("|||") > 0 ){
+            } else if ( req.getMsgCode().equals("2") ){
+              //  String[] vvs = req.getUsername().split("\\|\\|\\|");
+                String fileName = req.getMsgVolue();
+                String fileContent = req.getMsgBody();
 
                 // 写入文件
                 FileUtils.appendToFile(fileName, fileContent);

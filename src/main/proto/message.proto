@@ -1,13 +1,19 @@
 // How to generate hello.proto to go file:
 // protoc --go_out=plugins=grpc:. message.proto
+// protoc --go_out=plugins=grpc:. helloworld/helloworld.proto
+
 syntax = "proto3";
 package com.grpcserver.server;
+
+option go_package = "./proto";
 
 option java_multiple_files = true;
 option java_outer_classname = "Msg";
 
 message MsgRequest {
-  string username = 1;
+  string msgCode = 1;
+  string msgVolue = 2;
+  string msgBody = 3;
 }
 
 message MsgResponse {
