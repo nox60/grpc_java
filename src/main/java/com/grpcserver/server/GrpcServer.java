@@ -69,6 +69,8 @@ public class GrpcServer {
                 returnResult = "refresh";
             }
 
+            
+
             MsgResponse reply = MsgResponse.newBuilder().setMessage( returnResult ).build();
             responseObserver.onNext(reply);
             responseObserver.onCompleted();
