@@ -71,6 +71,29 @@
         </extensions>
         <plugins>
             <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.grpcserver.server.GrpcServer</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.xolstice.maven.plugins</groupId>
                 <artifactId>protobuf-maven-plugin</artifactId>
                 <version>0.6.1</version>
@@ -106,25 +129,6 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
-<!--            <plugin>-->
-<!--                <groupId>com.github.os72</groupId>-->
-<!--                <artifactId>protoc-jar-maven-plugin</artifactId>-->
-<!--                <version>3.1.0.1</version>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <phase>generate-sources</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>run</goal>-->
-<!--                        </goals>-->
-<!--                        <configuration>-->
-<!--                            <protocVersion>3.1.0</protocVersion>-->
-<!--                            <inputDirectories>-->
-<!--                                <include>src/main/proto</include>-->
-<!--                            </inputDirectories>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
 
         </plugins>
         <finalName>grpc_java</finalName>
