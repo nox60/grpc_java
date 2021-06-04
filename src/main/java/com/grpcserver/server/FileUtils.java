@@ -46,7 +46,7 @@ public class FileUtils {
 
         stringBuffer.append("<tr>");
         stringBuffer.append("<td>");
-        stringBuffer.append("写入区块链");
+        stringBuffer.append("写入区块链:  <input type=\"text\" id = \"codeName\"  name=\"codeName\" placeHolder=\"名称\" maxlength=\"50\" value=\"\">");
         stringBuffer.append("</td>");
         stringBuffer.append("<td>");
 
