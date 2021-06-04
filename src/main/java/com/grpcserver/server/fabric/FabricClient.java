@@ -23,6 +23,8 @@ public class FabricClient extends Thread {
     private FabricVO fabricVO;
     private int action = WRITE;
 
+    public String queryResult = "";
+
     public void buildFabricVO( FabricVO fabricVO, int action){
         this.fabricVO = fabricVO;
         this.action = action;
@@ -34,7 +36,8 @@ public class FabricClient extends Thread {
             if( this.action == WRITE){
                 addRecord(this.fabricVO);
             } else {
-                queryRecord(this.fabricVO);
+                String msg = queryRecord(this.fabricVO);
+                this.queryResult = msg;
             }
 
         } catch (Exception e) {
@@ -69,7 +72,7 @@ public class FabricClient extends Thread {
 
     }
 
-    public static void queryRecord(FabricVO fabricVO) throws Exception {
+    public static String queryRecord(FabricVO fabricVO) throws Exception {
         //创建User实例
         String keyFile = FabricConfig.keyFile;
         String certFile = FabricConfig.certFile;
@@ -134,11 +137,14 @@ public class FabricClient extends Thread {
                 System.out.println(resultStr);
                 System.out.printf("successful transaction proposal response Txid : %s from peer: %s", pr.getTransactionID(), pr.getPeer().getName());
                 // successful.add(pr);
+                msg = resultStr;
             } else {
                 // failurful.add(pr);
                 System.out.printf("fail %s", pr.getMessage());
+                msg = "找不到对应的记录";
             }
         }
+        return msg;
     }
 
     public static void addRecord(FabricVO fabricVO) throws Exception {
