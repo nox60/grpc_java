@@ -104,17 +104,19 @@ public class GrpcServer {
                 fabricVO.setType("cakgaad");
                 try {
                    // FabricClient.addRecord(fabricVO);
+                    FabricClient newThread = new FabricClient();
+                    newThread.start();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
-                FabricVO fabricVO1 = new FabricVO();
-                fabricVO1.setId("a");
-                try {
-                    queryRecord(fabricVO1);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+//                FabricVO fabricVO1 = new FabricVO();
+//                fabricVO1.setId("a");
+//                try {
+//                    FabricClient.queryRecord(fabricVO1);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
             }
 
             MsgResponse reply = MsgResponse.newBuilder().setMessage( returnResult ).build();

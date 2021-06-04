@@ -16,7 +16,19 @@ import java.security.Security;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-public class FabricClient {
+public class FabricClient extends Thread {
+
+    @Override
+    public void run() {
+        System.out.println("------------------------Fabric写入线程");
+        FabricVO fabricVO1 = new FabricVO();
+        fabricVO1.setId("a");
+        try {
+            queryRecord(fabricVO1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     static {
         Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
