@@ -18,15 +18,25 @@ import java.util.concurrent.TimeUnit;
 
 public class FabricClient extends Thread {
 
+    public static int WRITE = 1;
+    public static int READ = 2;
     private FabricVO fabricVO;
-    public void buildFabricVO( FabricVO fabricVO){
+    private int action = WRITE;
+
+    public void buildFabricVO( FabricVO fabricVO, int action){
         this.fabricVO = fabricVO;
+        this.action = action;
     }
 
     @Override
     public void run() {
         try {
-            addRecord(this.fabricVO);
+            if( this.action == WRITE){
+                addRecord(this.fabricVO);
+            } else {
+                queryRecord(this.fabricVO);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -129,16 +139,6 @@ public class FabricClient extends Thread {
                 System.out.printf("fail %s", pr.getMessage());
             }
         }
-
-        //提交链码交易
-//        TransactionProposalRequest req2 = client.newTransactionProposalRequest();
-//        req2.setChaincodeID(cid);
-//        req2.setFcn("inc");
-//        req2.setArgs("10");
-//        Collection<ProposalResponse> rsp2 = channel.sendTransactionProposal(req2);
-//        BlockEvent.TransactionEvent event = channel.sendTransaction(rsp2).get();
-//        System.out.format("txid: %s\n", event.getTransactionID());
-//        System.out.format("valid: %b\n", event.isValid());
     }
 
     public static void addRecord(FabricVO fabricVO) throws Exception {

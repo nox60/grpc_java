@@ -100,12 +100,31 @@ public class GrpcServer {
                 try {
                    // FabricClient.addRecord(fabricVO);
                     FabricClient newThread = new FabricClient();
-                    newThread.buildFabricVO(fabricVO);
+                    newThread.buildFabricVO(fabricVO, FabricClient.WRITE);
                     newThread.start();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
+            } else if ( req.getMsgCode().equals("4") ){ // 读取区块链数据
+                String fileName = req.getMsgVolue();
+//                String fileContent = req.getMsgBody();
+                System.out.println("getMsgCode   : "+req.getMsgCode());
+                System.out.println("getMsgVolue  : "+req.getMsgVolue());
+                System.out.println("getMsgBody   : "+req.getMsgBody());
+                // 写入区块链
+                // FileUtils.appendToFile(fileName, fileContent);
+                FabricVO fabricVO = new FabricVO();
+                fabricVO.setId(UUID.randomUUID().toString().replaceAll("-",""));
+                fabricVO.setName(req.getMsgVolue());
+                try {
+                    // FabricClient.addRecord(fabricVO);
+                    FabricClient newThread = new FabricClient();
+                    newThread.buildFabricVO(fabricVO, FabricClient.READ);
+                    newThread.start();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
             MsgResponse reply = MsgResponse.newBuilder().setMessage( returnResult ).build();
