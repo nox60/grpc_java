@@ -18,4 +18,15 @@ public class FabricConfig {
 
     //"E:\\temp\\orderer-admin-home\\msp\\cacerts\\ca.pem"
     public static String ordererAdminHomeCa = "E:\\hyperledger\\orderer-admin-home\\msp\\cacerts\\ca.pem";
+
+    public static  void  main(String args[]){
+        String testaaa = "tent\":\"[INFO] com.grpcserver:grpc_java:jar:1.0-SNAPSHOT\\n[INFO] +- junit:junit:jar:3.8.1:test\\n[INFO] +- io.grpc:grpc";
+        System.out.println(testaaa.replaceAll("\n",""));
+
+        testaaa = testaaa.replaceAll ( "\r",  "" );
+        testaaa = testaaa.replaceAll ( "\n",  "\\\\"+System.getProperty("line.separator"));
+        testaaa = testaaa.replace("\\n", "");
+        System.out.println(testaaa);
+
+    }
 }

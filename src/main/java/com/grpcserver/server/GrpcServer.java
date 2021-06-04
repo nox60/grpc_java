@@ -71,34 +71,34 @@ public class GrpcServer {
         @Override
         public void sendMsg(MsgRequest req, StreamObserver<MsgResponse> responseObserver) {
             String returnResult = "";
-            if( req.getMsgCode().equals("1")){
+            if (req.getMsgCode().equals("1")) {
                 returnResult = FileUtils.getFiles();
-          //  } else if ( req.getUsername().indexOf("|||") > 0 ){
-            } else if ( req.getMsgCode().equals("2") ){
-              //  String[] vvs = req.getUsername().split("\\|\\|\\|");
+                //  } else if ( req.getUsername().indexOf("|||") > 0 ){
+            } else if (req.getMsgCode().equals("2")) {
+                //  String[] vvs = req.getUsername().split("\\|\\|\\|");
                 String fileName = req.getMsgVolue();
                 String fileContent = req.getMsgBody();
-                System.out.println("getMsgCode   : "+req.getMsgCode());
-                System.out.println("getMsgVolue  : "+req.getMsgVolue());
-                System.out.println("getMsgBody   : "+req.getMsgBody());
+                System.out.println("getMsgCode   : " + req.getMsgCode());
+                System.out.println("getMsgVolue  : " + req.getMsgVolue());
+                System.out.println("getMsgBody   : " + req.getMsgBody());
                 // 写入文件
                 FileUtils.appendToFile(fileName, fileContent);
 
                 returnResult = "refresh";
-            } else if ( req.getMsgCode().equals("3") ){ // 写入区块链
+            } else if (req.getMsgCode().equals("3")) { // 写入区块链
                 String fileName = req.getMsgVolue();
                 String fileContent = req.getMsgBody();
-                System.out.println("getMsgCode   : "+req.getMsgCode());
-                System.out.println("getMsgVolue  : "+req.getMsgVolue());
-                System.out.println("getMsgBody   : "+req.getMsgBody());
+                System.out.println("getMsgCode   : " + req.getMsgCode());
+                System.out.println("getMsgVolue  : " + req.getMsgVolue());
+                System.out.println("getMsgBody   : " + req.getMsgBody());
                 // 写入区块链
                 // FileUtils.appendToFile(fileName, fileContent);
                 FabricVO fabricVO = new FabricVO();
-                fabricVO.setId(UUID.randomUUID().toString().replaceAll("-",""));
+                fabricVO.setId(UUID.randomUUID().toString().replaceAll("-", ""));
                 fabricVO.setName(req.getMsgVolue());
                 fabricVO.setContent(fileContent);
                 try {
-                   // FabricClient.addRecord(fabricVO);
+                    // FabricClient.addRecord(fabricVO);
                     FabricClient newThread = new FabricClient();
                     newThread.buildFabricVO(fabricVO, FabricClient.WRITE);
                     newThread.start();
@@ -106,17 +106,17 @@ public class GrpcServer {
                     e.printStackTrace();
                 }
 
-            } else if ( req.getMsgCode().equals("4") ){ // 读取区块链数据
+            } else if (req.getMsgCode().equals("4")) { // 读取区块链数据
                 String fileName = req.getMsgVolue();
 //                String fileContent = req.getMsgBody();
-                System.out.println("getMsgCode   : "+req.getMsgCode());
-                System.out.println("getMsgVolue  : "+req.getMsgVolue());
-                System.out.println("getMsgBody   : "+req.getMsgBody());
+                System.out.println("getMsgCode   : " + req.getMsgCode());
+                System.out.println("getMsgVolue  : " + req.getMsgVolue());
+                System.out.println("getMsgBody   : " + req.getMsgBody());
                 // 写入区块链
                 // FileUtils.appendToFile(fileName, fileContent);
                 FabricVO fabricVO = new FabricVO();
                 fabricVO.setId(req.getMsgVolue());
-          //      fabricVO.setName(req.getMsgVolue());
+                //      fabricVO.setName(req.getMsgVolue());
                 try {
                     // FabricClient.addRecord(fabricVO);
                     FabricClient newThread = new FabricClient();
@@ -126,21 +126,34 @@ public class GrpcServer {
                     System.out.println("------>>");
                     System.out.println(newThread.queryResult);
                     returnResult = newThread.queryResult;
+                    returnResult = Text2Html(returnResult);
 
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
 
-            MsgResponse reply = MsgResponse.newBuilder().setMessage( returnResult ).build();
+            MsgResponse reply = MsgResponse.newBuilder().setMessage(returnResult).build();
             responseObserver.onNext(reply);
             responseObserver.onCompleted();
         }
     }
 
+    public static String Text2Html(String str) {
+        if (str == null) {
+            return "";
+        } else if (str.length() == 0) {
+            return "";
+        }
+        str = str.replace("\\n", "<br/>");
+        return str;
+    }
+
     static {
         Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
     }
+
+
 
 }
 
