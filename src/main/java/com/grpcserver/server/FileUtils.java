@@ -44,6 +44,18 @@ public class FileUtils {
         StringBuffer stringBuffer = new StringBuffer();
         List<String> files = getFilesByPathAndSuffix();
 
+        stringBuffer.append("<tr>");
+        stringBuffer.append("<td>");
+        stringBuffer.append("写入区块链");
+        stringBuffer.append("</td>");
+        stringBuffer.append("<td>");
+
+        stringBuffer.append("</td>");
+        stringBuffer.append("<td>");
+        stringBuffer.append("<input type=\"radio\" name=\"selectedfile\"  value=\"BLOCKCHAIN\">");
+        stringBuffer.append("</td>");
+        stringBuffer.append("</tr>");
+
 
         stringBuffer.append("<tr>");
         stringBuffer.append("<td>");

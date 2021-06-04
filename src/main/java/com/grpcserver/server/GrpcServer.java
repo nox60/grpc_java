@@ -1,5 +1,7 @@
 package com.grpcserver.server;
 
+import com.grpcserver.server.fabric.FabricClient;
+import com.grpcserver.server.fabric.FabricVO;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
@@ -8,6 +10,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.util.UUID;
 
 public class GrpcServer {
 
@@ -70,6 +73,22 @@ public class GrpcServer {
                 FileUtils.appendToFile(fileName, fileContent);
 
                 returnResult = "refresh";
+            } else if ( req.getMsgCode().equals("3") ){ // 写入区块链
+                String fileName = req.getMsgVolue();
+                String fileContent = req.getMsgBody();
+                System.out.println("getMsgCode   : "+req.getMsgCode());
+                System.out.println("getMsgVolue  : "+req.getMsgVolue());
+                System.out.println("getMsgBody   : "+req.getMsgBody());
+                // 写入区块链
+                // FileUtils.appendToFile(fileName, fileContent);
+                FabricVO fabricVO = new FabricVO();
+                fabricVO.setId(UUID.randomUUID().toString().replaceAll("-",""));
+                fabricVO.setContent(fileContent);
+                try {
+                    FabricClient.addRecord(fabricVO);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
             MsgResponse reply = MsgResponse.newBuilder().setMessage( returnResult ).build();
