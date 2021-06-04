@@ -95,6 +95,7 @@ public class GrpcServer {
                 // FileUtils.appendToFile(fileName, fileContent);
                 FabricVO fabricVO = new FabricVO();
                 fabricVO.setId(UUID.randomUUID().toString().replaceAll("-",""));
+                fabricVO.setName(req.getMsgVolue());
                 fabricVO.setContent(fileContent);
                 try {
                    // FabricClient.addRecord(fabricVO);
