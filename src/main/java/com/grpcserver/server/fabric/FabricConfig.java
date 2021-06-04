@@ -8,13 +8,13 @@ public class FabricConfig {
     public static String certFile = "E:\\hyperledger\\org1-admin-home\\msp\\signcerts\\cert.pem";
 
     // "192.168.88.128",
-    public static String peer0Ip = "192.168.88.128";
+    public static String peer0Ip = "192.168.88.131";
 
     // "E:\\temp\\org1-admin-home\\msp\\cacerts\\ca.pem"
     public static String org1AdminHomeCa = "E:\\hyperledger\\org1-admin-home\\msp\\cacerts\\ca.pem";
 
     // "192.168.88.128",
-    public static String ordererIp = "192.168.88.128";
+    public static String ordererIp = "192.168.88.131";
 
     //"E:\\temp\\orderer-admin-home\\msp\\cacerts\\ca.pem"
     public static String ordererAdminHomeCa = "E:\\hyperledger\\orderer-admin-home\\msp\\cacerts\\ca.pem";
