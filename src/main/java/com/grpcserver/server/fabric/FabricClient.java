@@ -33,7 +33,7 @@ public class FabricClient {
 
         FabricVO fabricVO = new FabricVO();
         fabricVO.setId("TestCodeleee");
-        fabricVO.setName("heellsfff");
+        fabricVO.setName("heellsfffasdfasdfasdfasdfasdfasdfasdf33333333333333333");
         fabricVO.setContent("hibeyttt");
         fabricVO.setType("cakgaad");
         try {

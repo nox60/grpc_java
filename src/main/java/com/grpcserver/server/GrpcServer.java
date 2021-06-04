@@ -1,16 +1,27 @@
 package com.grpcserver.server;
 
 import com.grpcserver.server.fabric.FabricClient;
+import com.grpcserver.server.fabric.FabricConfig;
 import com.grpcserver.server.fabric.FabricVO;
+//import com.grpcserver.server.fabric.LocalUser;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
+import org.apache.commons.compress.utils.IOUtils;
+import org.bouncycastle.asn1.pkcs.PrivateKeyInfo;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.bouncycastle.openssl.PEMParser;
+import org.bouncycastle.openssl.jcajce.JcaPEMKeyConverter;
+import org.hyperledger.fabric.sdk.*;
+import org.hyperledger.fabric.sdk.exception.InvalidArgumentException;
+import org.hyperledger.fabric.sdk.security.CryptoSuite;
+import org.hyperledger.fabric_ca.sdk.HFCAClient;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.util.UUID;
+import java.io.*;
+import java.security.PrivateKey;
+import java.security.Security;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class GrpcServer {
 
@@ -49,6 +60,7 @@ public class GrpcServer {
     // 主函数启动RPC服务
     public static void main(String[] args) throws IOException, InterruptedException {
         System.out.println("GRPC SERVER START......");
+
         final GrpcServer server = new GrpcServer();
         server.start();
         server.blockUntilShutdown();
@@ -82,10 +94,24 @@ public class GrpcServer {
                 // 写入区块链
                 // FileUtils.appendToFile(fileName, fileContent);
                 FabricVO fabricVO = new FabricVO();
-                fabricVO.setId(UUID.randomUUID().toString().replaceAll("-",""));
-                fabricVO.setContent(fileContent);
+//                fabricVO.setId(UUID.randomUUID().toString().replaceAll("-",""));
+//                fabricVO.setType("a");
+//                fabricVO.setName("b");
+//                fabricVO.setContent(fileContent);
+                fabricVO.setId("TestCodeleee");
+                fabricVO.setName("heellsfffasdfasdfasdfasdfasdfasdfasdf33333333333333333");
+                fabricVO.setContent("hibeyttt");
+                fabricVO.setType("cakgaad");
                 try {
-                    FabricClient.addRecord(fabricVO);
+                   // FabricClient.addRecord(fabricVO);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                FabricVO fabricVO1 = new FabricVO();
+                fabricVO1.setId("a");
+                try {
+                    queryRecord(fabricVO1);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -96,6 +122,53 @@ public class GrpcServer {
             responseObserver.onCompleted();
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    static {
+        Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+    }
+
+//    public static void main(String args[]) {
+//        FabricVO fabricVO1 = new FabricVO();
+//        fabricVO1.setId("a");
+//        try {
+//            queryRecord(fabricVO1);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        FabricVO fabricVO = new FabricVO();
+//        fabricVO.setId("TestCodeleee");
+//        fabricVO.setName("heellsfffasdfasdfasdfasdfasdfasdfasdf33333333333333333");
+//        fabricVO.setContent("hibeyttt");
+//        fabricVO.setType("cakgaad");
+//        try {
+//            addRecord(fabricVO);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//
+//    }
+
+
+
+
 
 
 }
