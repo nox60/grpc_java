@@ -114,53 +114,9 @@ public class GrpcServer {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     static {
         Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
     }
-
-//    public static void main(String args[]) {
-//        FabricVO fabricVO1 = new FabricVO();
-//        fabricVO1.setId("a");
-//        try {
-//            queryRecord(fabricVO1);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        FabricVO fabricVO = new FabricVO();
-//        fabricVO.setId("TestCodeleee");
-//        fabricVO.setName("heellsfffasdfasdfasdfasdfasdfasdfasdf33333333333333333");
-//        fabricVO.setContent("hibeyttt");
-//        fabricVO.setType("cakgaad");
-//        try {
-//            addRecord(fabricVO);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//
-//    }
-
-
-
-
-
 
 }
 
