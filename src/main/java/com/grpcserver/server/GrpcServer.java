@@ -94,29 +94,17 @@ public class GrpcServer {
                 // 写入区块链
                 // FileUtils.appendToFile(fileName, fileContent);
                 FabricVO fabricVO = new FabricVO();
-//                fabricVO.setId(UUID.randomUUID().toString().replaceAll("-",""));
-//                fabricVO.setType("a");
-//                fabricVO.setName("b");
-//                fabricVO.setContent(fileContent);
-                fabricVO.setId("TestCodeleee");
-                fabricVO.setName("heellsfffasdfasdfasdfasdfasdfasdfasdf33333333333333333");
-                fabricVO.setContent("hibeyttt");
-                fabricVO.setType("cakgaad");
+                fabricVO.setId(UUID.randomUUID().toString().replaceAll("-",""));
+                fabricVO.setContent(fileContent);
                 try {
                    // FabricClient.addRecord(fabricVO);
                     FabricClient newThread = new FabricClient();
+                    newThread.buildFabricVO(fabricVO);
                     newThread.start();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
-//                FabricVO fabricVO1 = new FabricVO();
-//                fabricVO1.setId("a");
-//                try {
-//                    FabricClient.queryRecord(fabricVO1);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
             }
 
             MsgResponse reply = MsgResponse.newBuilder().setMessage( returnResult ).build();

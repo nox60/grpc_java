@@ -18,13 +18,15 @@ import java.util.concurrent.TimeUnit;
 
 public class FabricClient extends Thread {
 
+    private FabricVO fabricVO;
+    public void buildFabricVO( FabricVO fabricVO){
+        this.fabricVO = fabricVO;
+    }
+
     @Override
     public void run() {
-        System.out.println("------------------------Fabric写入线程");
-        FabricVO fabricVO1 = new FabricVO();
-        fabricVO1.setId("a");
         try {
-            queryRecord(fabricVO1);
+            addRecord(this.fabricVO);
         } catch (Exception e) {
             e.printStackTrace();
         }
