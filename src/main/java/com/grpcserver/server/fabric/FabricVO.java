@@ -1,15 +1,5 @@
 package com.grpcserver.server.fabric;
 
-//import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-//import org.codehaus.jackson.annotate.JsonProperty;
-//import org.codehaus.jackson.annotate.JsonWriteNullProperties;
-
-
-//import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-//import org.codehaus.jackson.annotate.JsonProperty;
-//import org.codehaus.jackson.annotate.JsonWriteNullProperties;
-
-
 //@JsonWriteNullProperties(false)
 //@JsonIgnoreProperties({"id", "revision"})
 public class FabricVO {
