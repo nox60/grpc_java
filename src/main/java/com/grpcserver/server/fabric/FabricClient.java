@@ -69,7 +69,6 @@ public class FabricClient extends Thread {
             e.printStackTrace();
         }
 
-
     }
 
     public static String queryRecord(FabricVO fabricVO) throws Exception {
