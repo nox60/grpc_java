@@ -53,18 +53,20 @@ public class FabricClient extends Thread {
         FabricVO fabricVO1 = new FabricVO();
         fabricVO1.setId("a");
         try {
-            queryRecord(fabricVO1);
+           // queryRecord(fabricVO1);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         FabricVO fabricVO = new FabricVO();
-        fabricVO.setId("TestCodeleee");
-        fabricVO.setName("heellsfffasdfasdfasdfasdfasdfasdfasdf33333333333333333");
-        fabricVO.setContent("hibeyttt");
-        fabricVO.setType("cakgaad");
+//        fabricVO.setId("TestCodeleee");
+//        fabricVO.setName("heellsfffasdfasdfasdfasdfasdfasdfasdf33333333333333333");
+//        fabricVO.setContent("hibeyttt");
+//        fabricVO.setType("cakgaad");
+        fabricVO.setId("87628e39458ee61486604d8aa95a8f63");
         try {
-            addRecord(fabricVO);
+            //addRecord(fabricVO);
+            queryRecord(fabricVO);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -136,6 +138,15 @@ public class FabricClient extends Thread {
                 System.out.println(resultStr);
                 System.out.printf("successful transaction proposal response Txid : %s from peer: %s", pr.getTransactionID(), pr.getPeer().getName());
                 // successful.add(pr);
+                System.out.println(pr.getTransactionID());
+
+                //System.out.println(pr.getProposal().getAllFields());
+//                System.out.println(pr.getProposalResponse().get);
+                System.out.println(peer.getName());
+                System.out.println(peer.getUrl());
+
+                System.out.println("----->>>>>>>>>>>>>>>>>>>>>>>>>>>>.");
+
                 msg = resultStr;
             } else {
                 // failurful.add(pr);
