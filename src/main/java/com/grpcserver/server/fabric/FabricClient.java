@@ -147,6 +147,9 @@ public class FabricClient extends Thread {
                 System.out.println("----->>>>>>>>>>>>>>>>>>>>>>>>>>>>.");
 
                 msg = resultStr;
+                msg = msg.substring(0, msg.length()-1);
+                msg = msg + ",";
+                msg = msg +"\"txId\":\""+pr.getTransactionID()+"\"}";
             } else {
                 // failurful.add(pr);
                 System.out.printf("fail %s", pr.getMessage());
