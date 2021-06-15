@@ -144,7 +144,6 @@ public class FabricClient extends Thread {
 //                System.out.println(pr.getProposalResponse().get);
                 System.out.println(peer.getName());
                 System.out.println(peer.getUrl());
-
                 System.out.println("----->>>>>>>>>>>>>>>>>>>>>>>>>>>>.");
 
                 msg = resultStr;
