@@ -8,6 +8,7 @@ import io.grpc.stub.StreamObserver;
 
 import java.io.*;
 import java.security.Security;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class GrpcServer {
@@ -84,6 +85,11 @@ public class GrpcServer {
                 fabricVO.setId(UUID.randomUUID().toString().replaceAll("-", ""));
                 fabricVO.setName(req.getMsgVolue());
                 fabricVO.setContent(fileContent);
+
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String str = format.format(new Date());
+
+                fabricVO.setType(str);
                 try {
                     // FabricClient.addRecord(fabricVO);
                     FabricClient newThread = new FabricClient();
